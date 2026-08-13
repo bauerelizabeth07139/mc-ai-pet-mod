@@ -1,0 +1,11 @@
+{
+  "mcaipet.command.spawn": "已生成 %d 个AI宠物！当前总数: %d",
+  "mcaipet.command.mode.success": "已将 %d 个AI宠物的模式设置为: %s",
+  "mcaipet.command.mode.invalid": "无效的模式: %s。可用模式: survival, building, guard, sweep",
+  "mcaipet.command.stop": "已停止 %d 个AI宠物的AI",
+  "mcaipet.command.dismiss": "已移除 %d 个AI宠物",
+  "mcaipet.command.count": "当前AI宠物数量: %d",
+  "mcaipet.message.enemy_detected": "发现敌人: %s",
+  "mcaipet.message.building_complete": "建筑完成!",
+  "mcaipet.error.spawn_failed": "无法创建AI宠物: %s"
+}

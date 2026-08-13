@@ -1,0 +1,15 @@
+{
+  "itemGroup.mcaipet": "MC AI 宠物",
+  "key.categories.mcaipet": "MC AI 宠物模组",
+  "commands.mcaipet.spawn": "已生成 %d 个AI宠物",
+  "commands.mcaipet.mode": "宠物模式已切换为 %s",
+  "commands.mcaipet.stop": "已停止宠物 AI",
+  "commands.mcaipet.dismiss": "已解散所有AI宠物",
+  "commands.mcaipet.count": "当前AI宠物数量：%d",
+  "ai.mode.survival": "生存模式",
+  "ai.mode.building": "建筑模式",
+  "ai.mode.guard": "护卫模式",
+  "ai.mode.sweep": "扫荡模式",
+  "ai.mode.idle": "空闲",
+  "pet.virtual_player": "AI宠物"
+}

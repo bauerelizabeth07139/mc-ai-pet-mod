@@ -1,0 +1,15 @@
+{
+  "itemGroup.mcaipet": "MC AI Pet",
+  "key.categories.mcaipet": "MC AI Pet Mod",
+  "commands.mcaipet.spawn": "Spawned %d AI pets",
+  "commands.mcaipet.mode": "Set pet mode to %s",
+  "commands.mcaipet.stop": "Stopped pet AI",
+  "commands.mcaipet.dismiss": "Dismissed all AI pets",
+  "commands.mcaipet.count": "Current AI pets: %d",
+  "ai.mode.survival": "Survival Mode",
+  "ai.mode.building": "Building Mode",
+  "ai.mode.guard": "Guard Mode",
+  "ai.mode.sweep": "Sweep Mode",
+  "ai.mode.idle": "Idle",
+  "pet.virtual_player": "AI Pet"
+}
