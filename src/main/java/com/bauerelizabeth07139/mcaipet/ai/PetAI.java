@@ -4,32 +4,30 @@ import com.bauerelizabeth07139.mcaipet.pet.PetData;
 import com.bauerelizabeth07139.mcaipet.pet.AIPetEntity;
 import com.bauerelizabeth07139.mcaipet.ai.goals.BuildingGoal;
 import com.bauerelizabeth07139.mcaipet.ai.goals.GuardGoal;
-import com.bauerelizabeth07139.mcaipet.ai.goals.SurvivalGoal;
 import com.bauerelizabeth07139.mcaipet.ai.goals.SweepGoal;
+import com.bauerelizabeth07139.mcaipet.ai.tasks.PetTaskSystem;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class PetAI {
 
     private final AIPetEntity pet;
-    private final SurvivalGoal survivalGoal;
     private final BuildingGoal buildingGoal;
     private final GuardGoal guardGoal;
     private final SweepGoal sweepGoal;
+    private final PetTaskSystem taskSystem;
     private int tickCount = 0;
 
     public PetAI(AIPetEntity pet) {
         this.pet = pet;
-        this.survivalGoal = new SurvivalGoal(pet);
         this.buildingGoal = new BuildingGoal(pet);
         this.guardGoal = new GuardGoal(pet);
         this.sweepGoal = new SweepGoal(pet);
+        this.taskSystem = new PetTaskSystem(pet);
     }
 
     public void tick() {
@@ -44,7 +42,7 @@ public class PetAI {
                 tickIdle();
                 break;
             case SURVIVAL:
-                survivalGoal.tick();
+                taskSystem.tick();
                 break;
             case BUILDING:
                 buildingGoal.tick();

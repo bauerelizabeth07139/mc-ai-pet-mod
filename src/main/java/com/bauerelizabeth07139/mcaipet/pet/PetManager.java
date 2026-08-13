@@ -51,7 +51,12 @@ public class PetManager {
             UUID uuid = UUID.randomUUID();
             String name = "AI Pet_" + index;
 
-            ServerPlayer fakePlayer = FakePlayerFactory.get(serverLevel, name);
+            Player nearestRealPlayer = findNearestRealPlayer(null);
+            String skinSourceName = nearestRealPlayer != null
+                ? nearestRealPlayer.getName().getString()
+                : "Pet_" + index;
+
+            ServerPlayer fakePlayer = FakePlayerFactory.get(serverLevel, skinSourceName);
             if (fakePlayer == null) {
                 System.err.println("[McAiPet] 无法创建智能宠物: " + name);
                 return;
@@ -62,6 +67,10 @@ public class PetManager {
 
             AIPetEntity petEntity = new AIPetEntity(fakePlayer, name);
             pets.put(uuid, petEntity);
+
+            if (nearestRealPlayer != null) {
+                petEntity.inheritSkinFromPlayer(nearestRealPlayer);
+            }
 
             petEntity.getData().getBlackboard().setSweepRange(ModConfig.SWEEP_RANGE);
             petEntity.getData().getBlackboard().setGuardRange(ModConfig.GUARD_RANGE);
@@ -198,7 +207,13 @@ public class PetManager {
 
     private void spawnOneWithData(PetData data) {
         try {
-            ServerPlayer fakePlayer = FakePlayerFactory.get(serverLevel, data.getName());
+            String skinSourceName = data.getName();
+            Player owner = data.getOwnerUuid() != null ? findNearestRealPlayer(null) : null;
+            if (owner != null) {
+                skinSourceName = owner.getName().getString();
+            }
+
+            ServerPlayer fakePlayer = FakePlayerFactory.get(serverLevel, skinSourceName);
             if (fakePlayer == null) return;
 
             fakePlayer.setPos(serverLevel.getSharedSpawnPos().getX(), serverLevel.getSharedSpawnPos().getY(), serverLevel.getSharedSpawnPos().getZ());
@@ -213,6 +228,12 @@ public class PetManager {
             petEntity.getData().getBlackboard().setLevel(serverLevel);
             if (data.getBlackboard() != null) {
                 petEntity.getData().getBlackboard().loadNBT(data.getBlackboard().saveNBT());
+            }
+
+            if (owner != null) {
+                petEntity.inheritSkinFromPlayer(owner);
+            } else if (skinSourceName != null && !skinSourceName.equals(data.getName())) {
+                petEntity.setSkinName(skinSourceName);
             }
 
             pets.put(data.getUuid(), petEntity);
